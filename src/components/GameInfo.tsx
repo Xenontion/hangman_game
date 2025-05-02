@@ -1,3 +1,4 @@
+import React from "react";
 import WordDisplay from "./WordDisplay/WordDisplay";
 import Keyboard from "./Keyboard/Keyboard";
 import { useGame } from "../context/game/GameContext";
@@ -6,6 +7,7 @@ interface GameInfoProps {
   currentRound: number;
   totalRounds: number;
   word: string;
+  hint: string;
   incorrectGuesses: number;
   maxAttempts: number;
   timeLeft: number;
@@ -18,6 +20,7 @@ const GameInfo = ({
   currentRound,
   totalRounds,
   word,
+  hint,
   incorrectGuesses,
   maxAttempts,
   timeLeft,
@@ -29,9 +32,12 @@ const GameInfo = ({
   if (!context) return null;
   const { guessedLetters } = context;
 
+  console.log("GameInfo received hint:", hint); // Додано для налагодження
+
   return (
     <div className="game-info">
       <h2>Раунд: {currentRound} / {totalRounds}</h2>
+      <p>Підказка: {hint}</p>
       <WordDisplay word={word} guessedLetters={guessedLetters} />
       <p>Помилки: {incorrectGuesses} / {maxAttempts}</p>
       <p>Час: {timeLeft} сек</p>

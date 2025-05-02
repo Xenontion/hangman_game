@@ -4,26 +4,13 @@ import GameInfo from "./GameInfo";
 import { useGame } from "../context/game/GameContext";
 import data from "../data/data.json";
 
-const getRandomEntry = () => data[Math.floor(Math.random() * data.length)];
+const getRandomWordWithHint = () => data[Math.floor(Math.random() * data.length)];
 const baseTime = 30;
 const maxAttempts = 6;
 
-export interface GameInfoProps {
-  currentRound: number;
-  totalRounds: number;
-  word: string;
-  hint: string;
-  incorrectGuesses: number;
-  maxAttempts: number;
-  timeLeft: number;
-  isGameWon: boolean;
-  gameOver: boolean;
-  restart: () => void;
-}
-
 const GameContent = () => {
   const context = useGame();
-  const [current, setCurrent] = useState(() => getRandomEntry());
+  const [currentWord, setCurrentWord] = useState(getRandomWordWithHint());
   const [timeLeft, setTimeLeft] = useState(baseTime);
   const [gameStarted, setGameStarted] = useState(false);
   const [rounds, setRounds] = useState<number | null>(null);
@@ -32,8 +19,8 @@ const GameContent = () => {
   const [isGameWon, setIsGameWon] = useState(false);
   const [incorrectGuesses, setIncorrectGuesses] = useState(0);
 
-  const word = current.word;
-  const hint = current.hint;
+  const word = currentWord.word;
+  const hint = currentWord.hint;
 
   useEffect(() => {
     if (!gameStarted || timeLeft === 0 || gameOver) return;
@@ -63,7 +50,7 @@ const GameContent = () => {
         setIsGameWon(true);
         if (rounds && currentRound < rounds) {
           setTimeout(() => {
-            setCurrent(getRandomEntry());
+            setCurrentWord(getRandomWordWithHint());
             setTimeLeft(baseTime);
             setCurrentRound(prev => prev + 1);
             setIsGameWon(false);
@@ -76,14 +63,14 @@ const GameContent = () => {
         }
       }
     }
-  }, [context?.guessedLetters, word, rounds, currentRound, context?.clearGuessedLetters]);
+  }, [context?.guessedLetters]);
 
   const restartGame = () => {
     setGameStarted(false);
     setGameOver(false);
     setRounds(null);
     setCurrentRound(1);
-    setCurrent(getRandomEntry());
+    setCurrentWord(getRandomWordWithHint());
     setTimeLeft(baseTime);
     setIsGameWon(false);
     setIncorrectGuesses(0);
@@ -98,7 +85,7 @@ const GameContent = () => {
         startGame={(count) => {
           setRounds(count);
           setGameStarted(true);
-          setCurrent(getRandomEntry());
+          setCurrentWord(getRandomWordWithHint());
           setTimeLeft(baseTime);
           setCurrentRound(1);
           setGameOver(false);
