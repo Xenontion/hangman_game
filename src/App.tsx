@@ -1,21 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import GameProvider from "./context/game/GameProvider";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 import GamePage from "./pages/GamePage";
 import StartPage from "./pages/StartPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import StatisticsPage from "./pages/StatisticsPage";
 import "./styles/styles.css";
 
 const App = () => {
   return (
-    <Router>
-      <GameProvider>
+    <Provider store={store}>
+      <Router>
         <Routes>
-          <Route path="/" element={<StartPage />} />
-          <Route path="/game" element={<GamePage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/" Component={StartPage} />
+          <Route path="/game" Component={GamePage} />
+          <Route path="/stats" Component={StatisticsPage} />
+          <Route path="*" Component={NotFoundPage} />
         </Routes>
-      </GameProvider>
-    </Router>
+      </Router>
+    </Provider>
   );
 };
 

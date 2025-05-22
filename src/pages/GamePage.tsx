@@ -1,4 +1,4 @@
-import GameContent from "../components/GameContent";
+import GameContent from "../container/GameContent";
 
 const GamePage = () => {
   return <GameContent />;
