@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import GameSetup from "../components/GameSetup";
+import GameSetup from "../pages/Game/GameSetup";
 import GameInfo from "../components/GameInfo/GameInfo";
 import { useSelector,gameActions, useDispatch } from "../store";
 import data from "../data/data.json";

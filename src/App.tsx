@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import GamePage from "./pages/GamePage";
-import StartPage from "./pages/StartPage";
+import GamePage from "./pages/Game/GamePage";
+import StartPage from "./pages/Start/StartPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import StatisticsPage from "./pages/StatisticsPage";
 import "./styles/styles.css";
