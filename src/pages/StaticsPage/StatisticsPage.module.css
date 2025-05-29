@@ -1,0 +1,39 @@
+/* StatisticsPage.module.css */
+
+/* Style for the main container (optional, but good practice if you want to center content etc.) */
+.statistics-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  /* Add other styles as needed */
+}
+
+/* Style for the unordered list to remove bullet points */
+.statistics-page ul {
+  list-style-type: none; /* This is the key property to remove bullet points */
+  padding: 0; /* Remove default padding from the ul */
+  margin: 0; /* Remove default margin from the ul */
+}
+
+/* Style for list items (optional, but can help with spacing) */
+.statistics-page li {
+  margin-bottom: 5px; /* Add some space between list items */
+  /* Add other styles as needed */
+}
+
+/* Style for the button (assuming .stats-btn is used in your component) */
+.stats-btn {
+  /* Add any specific button styles you want here */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.stats-btn:hover {
+  background-color: #0056b3;
+}
